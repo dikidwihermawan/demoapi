@@ -5,24 +5,24 @@ import java.util.List;
 
 public class ResponseData<T> {
 
-    private int status;
+    private boolean status;
     private List<String> messages = new ArrayList<>();
     private T payload;
 
     public ResponseData() {
     }
 
-    public ResponseData(int status, List<String> messages, T payload) {
+    public ResponseData(boolean status, List<String> messages, T payload) {
         this.status = status;
         this.messages = messages;
         this.payload = payload;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

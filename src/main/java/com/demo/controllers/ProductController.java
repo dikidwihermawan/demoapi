@@ -35,7 +35,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Product> getProduct(@PathVariable Long id) {
+    public Product getProduct(@PathVariable Long id) {
         return productService.findOne(id);
     }
 
@@ -47,12 +47,12 @@ public class ProductController {
             for (ObjectError error : errors.getAllErrors()) {
                 response.getMessages().add(error.getDefaultMessage());
             }
-            response.setStatus(402);
+            response.setStatus(false);
             response.setPayload(null);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
-        response.setStatus(200);
+        response.setStatus(true);
         response.setPayload(productService.save(product));
         return ResponseEntity.ok().body(response);
     }
@@ -65,18 +65,18 @@ public class ProductController {
             for (ObjectError error : errors.getAllErrors()) {
                 response.getMessages().add(error.getDefaultMessage());
             }
-            response.setStatus(402);
+            response.setStatus(false);
             response.setPayload(null);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
 
-        response.setStatus(200);
+        response.setStatus(true);
         response.setPayload(productService.save(product));
         return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        productService.delete(id);
+        productService.removeOne(id);
     }
 }

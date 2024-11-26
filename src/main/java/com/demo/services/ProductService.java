@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.models.entities.Product;
-import com.demo.models.repositories.ProductRepositories;
+import com.demo.models.repos.ProductRepo;
 
 import jakarta.transaction.Transactional;
 
@@ -16,22 +16,27 @@ import jakarta.transaction.Transactional;
 public class ProductService {
 
     @Autowired
-    private ProductRepositories productRepositories;
+    private ProductRepo productRepo;
 
     public List<Product> findAll() {
-        return productRepositories.findAll();
+        return productRepo.findAll();
     }
 
-    public Optional<Product> findOne(Long id) {
-        return productRepositories.findById(id);
+    public Product findOne(Long id) {
+        Optional<Product> product = productRepo.findById(id);
+        if (!product.isPresent()) {
+            return null;
+        }
+
+        return product.get();
     }
 
     public Product save(Product product) {
-        return productRepositories.save(product);
+        return productRepo.save(product);
     }
 
-    public void delete(Long id) {
-        productRepositories.deleteById(id);
+    public void removeOne(Long id) {
+        productRepo.deleteById(id);
     }
 
 }
