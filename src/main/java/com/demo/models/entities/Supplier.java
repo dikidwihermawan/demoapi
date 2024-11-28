@@ -2,6 +2,8 @@ package com.demo.models.entities;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +29,7 @@ public class Supplier {
     private String email;
 
     @ManyToMany(mappedBy = "suppliers")
+    @JsonBackReference
     private Set<Product> products;
 
     public Long getId() {

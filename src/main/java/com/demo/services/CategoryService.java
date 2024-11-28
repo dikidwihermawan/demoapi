@@ -2,11 +2,11 @@ package com.demo.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Locale.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.models.entities.Category;
 import com.demo.models.repos.CategoryRepo;
 
 import jakarta.transaction.Transactional;
